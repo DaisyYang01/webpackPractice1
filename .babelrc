@@ -1,0 +1,4 @@
+//babel配置
+{
+  "presets": ["env","react"]
+}
