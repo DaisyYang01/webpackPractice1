@@ -33,6 +33,26 @@ module.exports = {
                 },
                 exclude: /node_module/,    //手动添加必须处理(include)的文件（文件夹）或屏蔽不需要处理(exclude)的文件（文件夹）（可选）
                 // query：为loaders提供额外的设置选项（可选）
+            },
+
+            //css-loader,style-loader配置
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,   // 指定启用css modules
+                            // localIdentName: '[name]__[local]--[hash:base64:5]' // 指定css的类名格式
+                        }
+                    },
+                    {
+                        loader: "postcss-loader"
+                    }
+                ]
             }
         ]
     }
