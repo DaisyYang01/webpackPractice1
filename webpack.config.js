@@ -8,7 +8,7 @@ module.exports = {
     output: {
         // path: path.resolve(__dirname,'public'),    //打包后的文件存放的地方
         path: __dirname + '/build',    //打包后的文件存放的地方
-        filename: "bundle.js"           //打包后输出文件的文件名
+        filename: "bundle-[hash].js"           //打包后输出文件的文件名
     },
 
     //配置本地服务器 devserver
@@ -66,6 +66,12 @@ module.exports = {
             template: __dirname + '/app/index.tmpl.html'  //new 一个这个插件的实例，并传入相关的参数
         }),
         // 热加载插件
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        // 清除打包后的残余文件
+        new CleanWebpackPlugin('build/*.*',{
+            root: __dirname,
+            verbose: true,
+            dry: false
+        })
     ]
 };
